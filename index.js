@@ -4,10 +4,16 @@
 const
   express = require('express'),
   bodyParser = require('body-parser'),
+  request = require('request'),
   app = express().use(bodyParser.json()); // creates express http server
-
+app.use(bodyparser.urlencoded({extended:false}))
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+app.listen(process.env.PORT || 5000, () => console.log('webhook is listening'));
+
+app.get('/',function(req,res)
+{
+res.send("Hi i am a chatbot")
+})
 
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
